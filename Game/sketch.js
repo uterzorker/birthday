@@ -58,7 +58,7 @@ let orc_health = 50 + wavenum*5
 let wavesouls = 0;
 let wave_cas = 0;
 let earnings = 300;
-let lives = 25;
+let lives = 10;
 
 let tower_queue = "";
 let tower_options = {'basic': 250, 'fancy': 1000, 'sniper': 3000}
