@@ -216,9 +216,9 @@ class Tower {
             }
             rotate(this.dir )
             if (pose==0) {
-                image(enterprise, 0, 0, grid.xlen*6, grid.xlen*5)
+                image(enterprise, 0, 0, grid.xlen*5, grid.xlen*3)
             } else if (pose==1) {
-                image(enterprise2, 0, 0, grid.xlen*6, grid.xlen*5)
+                image(enterprise2, 0, 0, grid.xlen*5, grid.xlen*3)
             }
         } else {
             square(0, 0, 30)
