@@ -40,13 +40,10 @@ class Orc {
 
     display() {
         push();
-        //strokeWeight(this.rad)
-        //stroke(0, 0, 200)
         let phase = Math.floor(frameCount/4)%8
         let ref = rowers[phase]
         imageMode(CENTER)
-        image(ref, this.pos.x+50, this.pos.y, 220, 220)
-        //point(this.pos.x, this.pos.y)
+        image(ref, this.pos.x + main_width/28, this.pos.y, main_width/7, main_width/7)
         pop();
     }
 

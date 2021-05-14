@@ -7,7 +7,7 @@ class Tower {
         if (type=='basic') {
             this.pos = createVector(_initpos.x, _initpos.y)
             this.sidelength = grid.xlen
-            this.range = 200
+            this.range = main_width/7
             this.cooldown = .5
             this._framerate = this.cooldown*fr
             this.shots = []
@@ -21,7 +21,7 @@ class Tower {
         } else if (type=='fancy') {
             this.pos = createVector(_initpos.x, _initpos.y)
             this.sidelength = grid.xlen
-            this.range = 400
+            this.range = main_width/4
             this.cooldown = .3
             this._framerate = this.cooldown*fr
             this.shots = []
@@ -35,7 +35,7 @@ class Tower {
         } else if (type=='sniper') {
             this.pos = createVector(_initpos.x, _initpos.y)
             this.sidelength = grid.xlen
-            this.range = 800
+            this.range = main_width/2
             this.cooldown = .7
             this._framerate = this.cooldown*fr
             this.shots = []
@@ -188,9 +188,9 @@ class Tower {
             }
             rotate(this.dir )
             if (pose==0) {
-                image(orko, 0, 0, 80, 80)
+                image(orko, 0, 0, grid.xlen*3, grid.xlen*3)
             } else if (pose==1) {
-                image(orko2, 0, 0, 80, 80)
+                image(orko2, 0, 0, grid.xlen*3, grid.xlen*3)
             }
         } else if (this.t == "fancy") {
             let pose;
@@ -202,9 +202,9 @@ class Tower {
             }
             rotate(this.dir )
             if (pose==0) {
-                image(mickey, 0, 0, 150, 150)
+                image(mickey, 0, 0, grid.xlen*4, grid.xlen*4)
             } else if (pose==1) {
-                image(mickey2, 0, 0, 150, 150)
+                image(mickey2, 0, 0, grid.xlen*4, grid.xlen*4)
             }
         } else if (this.t == "sniper") {
             let pose;
@@ -216,9 +216,9 @@ class Tower {
             }
             rotate(this.dir )
             if (pose==0) {
-                image(enterprise, 0, 0, 120, 120)
+                image(enterprise, 0, 0, grid.xlen*5, grid.xlen*5)
             } else if (pose==1) {
-                image(enterprise2, 0, 0, 120, 120)
+                image(enterprise2, 0, 0, grid.xlen*5, grid.xlen*5)
             }
         } else {
             square(0, 0, 30)

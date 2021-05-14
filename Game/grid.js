@@ -1,7 +1,8 @@
 class Grid {
     constructor(loclist) {
+        this.conv = 1440/main_width
         this.xdiv = 40
-        this.xlen = main_width/this.xdiv
+        this.xlen = main_width / this.xdiv
         this.ydiv = main_height/this.xlen
         this.ylen = this.xlen
         this.rows = []
@@ -48,7 +49,7 @@ class Grid {
         let y;
         let _occ = 0
         if (clicked) {
-            x = Math.floor(mouseX/(this.xlen*1.1))
+            x = Math.floor(mouseX/(this.xlen*1.1*this.conv))
             y = Math.floor(mouseY/this.ylen)
             for (let box of this.occupied) {
                 if (box[0] == x && box[1] == y) {
@@ -65,7 +66,7 @@ class Grid {
             }
         }
         else if (mouseX > 0 && mouseY > 0 &&  mouseX < main_width && mouseY < main_height && (mouseX + mouseY)%1 != this.mouseState) {
-            x = Math.floor(mouseX/(this.xlen*1.1))
+            x = Math.floor(mouseX/(this.xlen*1.1*this.conv))
             y = Math.floor(mouseY/this.ylen)
             this.highlights.push([x, y])
             this.mouseState = (mouseX + mouseY)%1            
@@ -94,7 +95,7 @@ class Grid {
                                     push();
                                     fill(255, 0, 0, 75)
                                     strokeWeight(0)
-                                    square(this.cols[j], this.rows[i], this.xdiv-2)
+                                    square(this.cols[j], this.rows[i], this.xlen*.9)
                                     pop();
                                     occ = 1
                                     break
@@ -105,7 +106,7 @@ class Grid {
                                 push();
                                 fill(0, 255, 0, 75)
                                 strokeWeight(0)
-                                square(this.cols[j], this.rows[i], this.xdiv-2)
+                                square(this.cols[j], this.rows[i], this.xlen*.9)
                                 pop();
                             }
                             
@@ -116,7 +117,7 @@ class Grid {
                 fill(200, 200, 200, 20)
                 stroke(200)
                 strokeWeight(0)
-                square(this.cols[j], this.rows[i], this.xdiv-1)
+                square(this.cols[j], this.rows[i], this.xlen*.9)
                 pop();
                 
             }

@@ -35,8 +35,10 @@ let s_mickey_spawn;
 let s_mickey = [];
 let s_ent_spawn;
 let s_ent = [];
+let s_victory;
 let s_gameover;
 let s_rowing;
+let s_slide;
 
 
 let path = {};
@@ -72,6 +74,7 @@ let popup_wait = 60;
 let outro = 0;
 let fade = 0;
 let _restart = 0;
+let _restart_frame = 0;
 let end = 0;
 
 //headspin
@@ -97,8 +100,12 @@ function reset() {
   launch = 0
   shrink = 1
   _restart = 1
+  _restart_frame = frameCount
   pauseStatus = 1
   end = 0;
+  s_victory.stop()
+  s_gameover.stop()
+  s_slide.stop()
 }
 
 function preload() {
@@ -151,6 +158,10 @@ function preload() {
   s_ent = loadSound('libraries/sounds/photon0.mp3')
   s_ent.setVolume(.3)
   s_gameover = loadSound('libraries/sounds/gameover.mp3')
+  s_victory = loadSound('libraries/sounds/victory.mp3')
+  s_victory.setVolume(.7)
+  s_slide = loadSound('libraries/sounds/slide.mp3')
+  s_slide.setVolume(.5)
 }
 
 
@@ -271,11 +282,7 @@ function draw() {
   background(0);
   image(space, 0,0, main_width, main_height)
 
-  if (pauseState==0) {
-    s_theme.stop()
-  }
-  
-  if (frameCount==4) {
+  if (frameCount-_restart_frame == 4) {
     if (s_theme.isPlaying()) {
       s_theme.stop()
     }
@@ -292,6 +299,7 @@ function draw() {
 
   
   grid = new Grid(tower_list)
+
 
   if (tower_queue.length) {
     let val = tower_options[tower_queue]
@@ -336,9 +344,11 @@ function draw() {
 
   //GATES (BACK)
   push();
-  image(gates, main_width*.9, main_height*.55, 220, 200)
+  image(gates, main_width*.9, main_height*.55, main_width/7, main_width/7)
   pop();
 
+
+  //DISPLAY RANGE
   if (tower_queue.length > 0) {
     let _show_r = tower_ranges[tower_queue]
     if (earnings >= tower_options[tower_queue]) {
@@ -361,25 +371,24 @@ function draw() {
   fill(5, 100)
   let shadow_angle = 20
   rect(shadow_angle, shadow_angle, main_width*.15, main_height*.4)
-  
-  let hud_font_1 = Math.floor(main_width/80)
-  
+
+  let _hud_font_size = main_width*.015
   fill(75, 20, 75)
   rect(0, 0, main_width*.15, main_height*.4)
   stroke(0)
   fill(255, 255, 0)
   textFont('Courier New')
-  textSize(hud_font_1)
+  textSize(_hud_font_size)
   text("$ " + str(Math.floor(earnings)), main_width*.02, main_height*.04)
   text("WAVE: " + str(wavenum+1), main_width*.02, main_height*.08)
 
   ///HUD TOWER DESCRIPTION
   push();
-  textSize(hud_font_1-2)
+  textSize(_hud_font_size-2)
   text("'z':TOWER 1", main_width*.01, main_height*.12)
   text("'x':TOWER 2", main_width*.01, main_height*.18)
   text("'c':TOWER 3", main_width*.01, main_height*.24)
-  textSize(hud_font_2-4)
+  textSize(_hud_font_size-4)
   text("cost -- $250", main_width*.05, main_height*.14)
   text("cost -- $1000", main_width*.05, main_height*.2)
   text("cost -- $3000", main_width*.05, main_height*.26)
@@ -455,14 +464,14 @@ function draw() {
 
   //GATES (FRONT)
   push();
-  image(gates_front, main_width*.9, main_height*.55, 220, 200)
+  image(gates_front, main_width*.9, main_height*.55, main_width/7, main_width/7)
   pop();
   
 
   //POPUP
   if (popup_state) {
     if (frameCount < popup) {
-      let size = 25
+      let size = main_width/32
       push();
       textFont('Courier New')
       textAlign(RIGHT)
@@ -478,9 +487,12 @@ function draw() {
       
 
   //ENDGAME
+  let title_size = main_width/8
+
   if (wavenum > 8) {
     if (outro==0) {
       outro = frameCount
+      s_victory.play()
     }
     end = 1
     orcs = []
@@ -498,35 +510,35 @@ function draw() {
     strokeWeight(10)
     stroke(0)
     fill(75, 75, 200)
-    textSize(144)
+    textSize(title_size)
     textAlign(CENTER)
     text('YOU WIN!', main_width/2, main_height/2)
     if (fade > 150) {
-      textSize(50)
+      textSize(title_size/3)
       strokeWeight(3)
-      text('HITLER IS BACK IN HELL', main_width/2, main_height/2 + 90)
+      text('HITLER IS BACK IN HELL', main_width/2, main_height/2 + title_size/2)
 
     }
 
     if (fade > 180) {
       push();
       imageMode(CORNER)
-      image(pres, main_width-4*(fade-180), main_height*.4, 300, 300)
+      image(pres, main_width-(main_width/8/45)*(fade-180), main_height*.4, main_width/5, main_width/5)
       pop();
     } if (fade > 220) {
       push();
-      textSize(35)
+      textSize(title_size/5)
       fill(0)
       noStroke();
-      text("'Thank you for saving me, specifically.' -- Mr. Gun, President of the USA", main_width/2, main_height/2 + 220)
+      text("'Thank you for saving me, specifically.' -- Mr. Gun, President of the USA", main_width/2, main_height/2 + title_size*1.2)
       pop();
     }
     if (fade > 250) {
       push();
       strokeWeight(0)
-      textSize(25)
+      textSize(title_size/5)
       fill(0)
-      text("press 'r' to restart", main_width/2, main_height-25)
+      text("press 'r' to restart", main_width/2, main_height-title_size/5)
       pop();
     }
     
@@ -551,28 +563,31 @@ function draw() {
     rotate(theta)
     imageMode(CENTER)
     tint(255, fade)
-    image(smile, 0, 0, 500*shrink, 500*shrink)
+    image(smile, 0, 0, 4*title_size*shrink, 4*title_size*shrink)
     pop();
 
     push();
     strokeWeight(2)
     stroke(255, 50, 0)
     fill(255, 0, 0)
-    textSize(144)
+    textSize(title_size)
     textAlign(CENTER)
     text('GAME OVER', main_width/2, main_height/2)
     if (fade > 150) {
-      textSize(50)
-      text('HITLER GOT INTO HEAVEN', main_width/2, main_height/2 + 100)
+      textSize(title_size*.4)
+      text('HITLER GOT INTO HEAVEN', main_width/2, main_height/2 + title_size*.8)
 
       if (fade > 180) {
+        if (launch==0) {
+          s_slide.play()
+        }
         theta += PI/6
         launch += 10
         shrink *= .9
       }
     }
     if (fade > 250) {
-      textSize(25)
+      textSize(title_size/5)
       fill(255)
       text("press 'r' to restart", main_width/2, main_height-25)
     }
@@ -590,9 +605,11 @@ function draw() {
     push();
     console.log('paused')
     let moment = 'CONTINUE';
-    if (frameCount < 5 || _restart) {
+    if (frameCount - _restart_frame < 5) {
       mouseUp(LEFT)
-      s_theme.play()
+      if (s_theme.isPlaying() == false) {
+        s_theme.play()
+      }
       moment = 'BEGIN'
       restart = 0
     } 
@@ -606,20 +623,20 @@ function draw() {
     push();
     let title = 'Runaway Hitler'
     textFont(fraktur)
-    textSize(144)
+    textSize(title_size)
     fill(50, 0, 0, 150)
     text(title, main_width/2+5, main_height/2-50+5)
     fill(255, 0, 0)
     text(title, main_width/2, main_height/2-50)
     pop();
 
-    textSize(48)
+    textSize(title_size*.3)
     textFont('Courier New')
     fill(0, 150)
-    text('SATAN HAS MISPLACED HIS KEYS', main_width/2, main_height/2 + 50)
-    text('WE MUST KEEP THE HITLERS OUT OF HEAVEN', main_width/2, main_height/2+150)
-    textSize(40)
-    text('PRESS SPACEBAR TO ' + moment, main_width/2, main_height/2 + 250)
+    text('SATAN HAS MISPLACED HIS KEYS', main_width/2, main_height/2 + title_size*.5)
+    text('WE MUST KEEP THE HITLERS OUT OF HEAVEN', main_width/2, main_height/2 + title_size)
+    textSize(title_size*.2)
+    text('PRESS SPACEBAR TO ' + moment, main_width/2, main_height/2 + title_size*1.5)
     //rect(0, 0, main_width, main_height)
     pop();
     noLoop();
