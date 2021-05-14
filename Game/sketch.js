@@ -88,7 +88,7 @@ function reset() {
   wavesouls = 0
   wave_cas = 0
   earnings = 300
-  lives = 25
+  lives = 10
   fade = 0
   outro = 0
   loop();
