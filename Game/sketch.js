@@ -271,14 +271,10 @@ function draw() {
   background(0);
   image(space, 0,0, main_width, main_height)
 
-  push();
-  //image(grass_img, 0, 0, main_width, main_height)
-  pop();
-
-  //First Wave Delay
-  waiting=1
-  _wait_end = 300
-
+  if (pauseState==0) {
+    s_theme.stop()
+  }
+  
   if (frameCount==4) {
     if (s_theme.isPlaying()) {
       s_theme.stop()
@@ -365,23 +361,25 @@ function draw() {
   fill(5, 100)
   let shadow_angle = 20
   rect(shadow_angle, shadow_angle, main_width*.15, main_height*.4)
-
+  
+  let hud_font_1 = Math.floor(main_width/80)
+  
   fill(75, 20, 75)
   rect(0, 0, main_width*.15, main_height*.4)
   stroke(0)
   fill(255, 255, 0)
   textFont('Courier New')
-  textSize(25)
+  textSize(hud_font_1)
   text("$ " + str(Math.floor(earnings)), main_width*.02, main_height*.04)
   text("WAVE: " + str(wavenum+1), main_width*.02, main_height*.08)
 
   ///HUD TOWER DESCRIPTION
   push();
-  textSize(22)
+  textSize(hud_font_1-2)
   text("'z':TOWER 1", main_width*.01, main_height*.12)
   text("'x':TOWER 2", main_width*.01, main_height*.18)
   text("'c':TOWER 3", main_width*.01, main_height*.24)
-  textSize(18)
+  textSize(hud_font_2-4)
   text("cost -- $250", main_width*.05, main_height*.14)
   text("cost -- $1000", main_width*.05, main_height*.2)
   text("cost -- $3000", main_width*.05, main_height*.26)
