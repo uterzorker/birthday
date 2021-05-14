@@ -21,7 +21,7 @@ class Tower {
         } else if (type=='fancy') {
             this.pos = createVector(_initpos.x, _initpos.y)
             this.sidelength = grid.xlen
-            this.range = main_width/5
+            this.range = main_width/7
             this.cooldown = .6
             this._framerate = this.cooldown*fr
             this.shots = []
