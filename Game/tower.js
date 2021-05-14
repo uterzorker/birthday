@@ -8,7 +8,7 @@ class Tower {
             this.pos = createVector(_initpos.x, _initpos.y)
             this.sidelength = grid.xlen
             this.range = main_width/7
-            this.cooldown = .5
+            this.cooldown = .4
             this._framerate = this.cooldown*fr
             this.shots = []
             this._prev_shot = 0;
@@ -22,7 +22,7 @@ class Tower {
             this.pos = createVector(_initpos.x, _initpos.y)
             this.sidelength = grid.xlen
             this.range = main_width/4
-            this.cooldown = .3
+            this.cooldown = .6
             this._framerate = this.cooldown*fr
             this.shots = []
             this._prev_shot = 0;
@@ -36,7 +36,7 @@ class Tower {
             this.pos = createVector(_initpos.x, _initpos.y)
             this.sidelength = grid.xlen
             this.range = main_width/2
-            this.cooldown = .7
+            this.cooldown = .8
             this._framerate = this.cooldown*fr
             this.shots = []
             this._prev_shot = 0;
