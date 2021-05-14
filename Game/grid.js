@@ -95,7 +95,7 @@ class Grid {
                                     push();
                                     fill(255, 0, 0, 75)
                                     strokeWeight(0)
-                                    square(this.cols[j], this.rows[i], this.xlen*.9)
+                                    square(this.cols[j], this.rows[i], this.xlen*.95)
                                     pop();
                                     occ = 1
                                     break
@@ -106,7 +106,7 @@ class Grid {
                                 push();
                                 fill(0, 255, 0, 75)
                                 strokeWeight(0)
-                                square(this.cols[j], this.rows[i], this.xlen*.9)
+                                square(this.cols[j], this.rows[i], this.xlen*.95)
                                 pop();
                             }
                             
@@ -117,7 +117,7 @@ class Grid {
                 fill(200, 200, 200, 20)
                 stroke(200)
                 strokeWeight(0)
-                square(this.cols[j], this.rows[i], this.xlen*.9)
+                square(this.cols[j], this.rows[i], this.xlen*.95)
                 pop();
                 
             }
