@@ -68,7 +68,9 @@ class Tower {
 
                         if (dist <= this.range && o.alive) {
                             options.push([dist, dir])
-                        }   
+                        } if (options.length) {
+                            options = options.sort((a, b)=> a[0]-b[0])
+                        }    
                     }
                 }
             }
@@ -88,12 +90,24 @@ class Tower {
         
                     if (dist <= this.range && o.alive) {
                         options.push([o.l, dir])
-                    }   
+                    } if (options.length) {
+                            options = options.sort((a, b)=> b[0] - a[0])
+                    }  
                 }
                 
             }
         } if (options.length > 0) {
-            return options.sort((a, b)=> a[0]-b[0])[options.length-1][1]
+            if (targets.length) {
+               for (i of targets) {
+                   for (let j=0; j<options.length; j++) {
+                       if (options[j] == i) {
+                           options.splice(j, 1)
+                       }    
+                   }     
+               }    
+            }
+            targets.push(options[0])
+            return options[0][1]
         } else {
             return false
         }
