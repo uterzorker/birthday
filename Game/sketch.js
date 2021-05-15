@@ -87,6 +87,7 @@ function reset() {
   console.log('reset')
   wavenum = 0
   wavesouls = 0
+  wavesize = 1
   wave_cas = 0
   earnings = 300
   lives = 10
