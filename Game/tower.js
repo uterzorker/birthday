@@ -137,7 +137,7 @@ class Tower {
     hit(obj) {
         //let _x_ = obj.pos
         let hits = 0
-        let _radius_ = obj.health/4 + 4*this.shot_r
+        let _radius_ = obj.health/4 + 5*this.shot_r
         if (this.shots.length > 0) {
             for (let i=0;i<this.shots.length;i++) {
                 let shot = this.shots[i]
@@ -151,8 +151,15 @@ class Tower {
                 let _delta = p5.Vector.sub(_towshot, _towobj)
                 if (_shotobj.mag() <= _radius_) {
                     hits += 1
+                    for (let j=0;j<targets.length;j++) {
+                        if (targets[j][1] == shot[1]) {
+                            targets.splice(j, 1)
+                        }
+                    }
+                    
                     this.shots.splice(i, 1)
                     //console.log(this.dir)
+                    
                 } 
             }
         }
