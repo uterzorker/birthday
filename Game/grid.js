@@ -66,7 +66,7 @@ class Grid {
             }
         }
         else if (mouseX > 0 && mouseY > 0 &&  mouseX < main_width && mouseY < main_height && (mouseX + mouseY)%1 != this.mouseState) {
-            x = Math.floor(mouseX/(this.xlen*.8)*this.conv)
+            x = Math.floor(mouseX/(this.xlen)*this.conv)
             y = Math.floor(mouseY/this.ylen)
             this.highlights.push([x, y])
             this.mouseState = (mouseX + mouseY)%1            
