@@ -71,11 +71,6 @@ class Tower {
                         }   
                     }
                 }
-                if (options.length > 0) {
-                    return options.sort((a, b)=> a[0] - b[0])[0][1]
-                } else {
-                    return false
-                }
             }
         } else if (mode=='front') {
             if (objs.length > 0) {
@@ -95,12 +90,12 @@ class Tower {
                         options.push([o.l, dir])
                     }   
                 }
-                if (options.length > 0) {
-                    return options.sort((a, b)=> a[0]-b[0])[options.length-1][1]
-                } else {
-                    return false
-                }
+                
             }
+        } if (options.length > 0) {
+            return options.sort((a, b)=> a[0]-b[0])[options.length-1][1]
+        } else {
+            return false
         }
     }
 
@@ -128,7 +123,7 @@ class Tower {
     hit(obj) {
         //let _x_ = obj.pos
         let hits = 0
-        let _radius_ = obj.health/4 + 5*this.shot_r
+        let _radius_ = obj.health/4 + 4*this.shot_r
         if (this.shots.length > 0) {
             for (let i=0;i<this.shots.length;i++) {
                 let shot = this.shots[i]
