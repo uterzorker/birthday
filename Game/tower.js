@@ -27,7 +27,7 @@ class Tower {
             this.shots = []
             this._prev_shot = 0;
             this._shotspeed = 20
-            this.shot_r = 30
+            this.shot_r = 15
             this.power = 300
             this.crit = .2
             this.mode_ind=0
@@ -255,7 +255,7 @@ class Tower {
                     translate(_shotpos.x, _shotpos.y)
                     rotate(frameCount*PI/10)
                     imageMode(CENTER)
-                    image(epcot, 0, 0, this.shot_r*2, this.shot_r*2)
+                    image(epcot, 0, 0, this.shot_r*3, this.shot_r*3)
                     pop();
                 } else {
                     stroke(this.shot_color[0], this.shot_color[1], this.shot_color[2])
