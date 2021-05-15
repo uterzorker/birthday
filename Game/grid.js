@@ -49,7 +49,7 @@ class Grid {
         let y;
         let _occ = 0
         if (clicked) {
-            x = Math.floor(mouseX/(this.xlen*.8)*this.conv)
+            x = Math.floor(mouseX/(this.xlen*.3)*this.conv)
             y = Math.floor(mouseY/this.ylen)
             for (let box of this.occupied) {
                 if (box[0] == x && box[1] == y) {
