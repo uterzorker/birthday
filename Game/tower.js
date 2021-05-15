@@ -55,7 +55,7 @@ class Tower {
         if (mode=='close') {
             if (objs.length > 0) {
                 for (let o of objs) {
-                    if (o.steps) {
+                    if (o.alive) {
                         let lead = o.dir
                         let _o_pos = o.pos
                         let _towobj = p5.Vector.sub(_o_pos, this.pos)
@@ -77,21 +77,23 @@ class Tower {
         } else if (mode=='front') {
             if (objs.length > 0) {
                 for (let o of objs) {
-                    let lead = o.dir
-                    //lead.setMag(o.speed)
-                    let _o_pos = o.ping()
-                    let _towobj = p5.Vector.sub(_o_pos, this.pos)
-                    //leading
-                    lead.setMag(o.speed*_towobj.mag()/(.1*this._shotspeed*this._shotspeed))
-                    _o_pos.add(lead)
-                    let dir = p5.Vector.sub(_o_pos, this.pos)
-                    //this.dir = dir.heading()
-                    let dist = dir.mag()
-        
-                    if (dist <= this.range && o.alive) {
-                        options.push([o.l, dir])
-                    } if (options.length) {
-                            options = options.sort((a, b)=> b[0] - a[0])
+                    if (o.alive) {
+                        let lead = o.dir
+                        //lead.setMag(o.speed)
+                        let _o_pos = o.ping()
+                        let _towobj = p5.Vector.sub(_o_pos, this.pos)
+                        //leading
+                        lead.setMag(o.speed*_towobj.mag()/(.1*this._shotspeed*this._shotspeed))
+                        _o_pos.add(lead)
+                        let dir = p5.Vector.sub(_o_pos, this.pos)
+                        //this.dir = dir.heading()
+                        let dist = dir.mag()
+
+                        if (dist <= this.range && o.alive) {
+                            options.push([o.l, dir])
+                        } if (options.length) {
+                                options = options.sort((a, b)=> b[0] - a[0])
+                        }
                     }  
                 }
                 
