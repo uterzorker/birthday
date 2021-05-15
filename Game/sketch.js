@@ -53,7 +53,7 @@ let tower_list = []
 
 
 let wavenum = 0;
-let wavesize = 10 + 2*wavenum
+let wavesize = 1
 let orc_health = 50 + wavenum*5
 let wavesouls = 0;
 let wave_cas = 0;
@@ -400,7 +400,7 @@ function draw() {
 
   //WAVEMACHINE
   let _frame_spacing = (fr)/(1+wavenum)
-  if (frameCount%(_frame_spacing) < 1 && wavesouls < wavesize && end == 0 && frameCount >= 60) {
+  if (frameCount%(_frame_spacing) < 1 && wavesouls < wavesize && end == 0 && frameCount >= fr*3) {
     wavesouls += 1
     let _o = new Orc(init, orc_health, ((10+wavenum)))
     orcs.push(_o)
