@@ -49,7 +49,7 @@ class Grid {
         let y;
         let _occ = 0
         if (clicked) {
-            x = Math.floor(mouseX/(this.xlen*1.1))
+            x = Math.floor(mouseX/(this.xlen*.8))
             y = Math.floor(mouseY/this.ylen)
             for (let box of this.occupied) {
                 if (box[0] == x && box[1] == y) {
@@ -66,7 +66,7 @@ class Grid {
             }
         }
         else if (mouseX > 0 && mouseY > 0 &&  mouseX < main_width && mouseY < main_height && (mouseX + mouseY)%1 != this.mouseState) {
-            x = Math.floor(mouseX/(this.xlen*1.1))
+            x = Math.floor(mouseX/(this.xlen*.8))
             y = Math.floor(mouseY/this.ylen)
             this.highlights.push([x, y])
             this.mouseState = (mouseX + mouseY)%1            
