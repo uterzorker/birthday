@@ -13,7 +13,7 @@ class Tower {
             this.shots = []
             this._prev_shot = 0;
             this._shotspeed = 50
-            this.shot_r = 1
+            this.shot_r = 4
             this.power = 50
             this.crit = .1  
             this.mode_ind=0
@@ -80,7 +80,7 @@ class Tower {
                     if (o.alive) {
                         let lead = o.dir
                         //lead.setMag(o.speed)
-                        let _o_pos = o.ping()
+                        let _o_pos = o.pos
                         let _towobj = p5.Vector.sub(_o_pos, this.pos)
                         //leading
                         lead.setMag(o.speed*_towobj.mag()/(.1*this._shotspeed*this._shotspeed))
