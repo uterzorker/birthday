@@ -50,6 +50,7 @@ let t;
 let towers = [];
 let _occ_check = 0;
 let tower_list = []
+let targets = [];
 
 
 let wavenum = 0;
