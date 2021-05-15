@@ -98,9 +98,9 @@ class Tower {
             }
         } if (options.length > 0) {
             if (targets.length) {
-               for (i of targets) {
+               for (let targ of targets) {
                    for (let j=0; j<options.length; j++) {
-                       if (options[j] == i) {
+                       if (options[j] == targ) {
                            options.splice(j, 1)
                        }    
                    }     
