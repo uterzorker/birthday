@@ -11,7 +11,7 @@ class Grid {
             this.rows.push(i*this.ylen)
         }
         for (let j=0;j<this.xdiv; j++) {
-            this.cols.push(j*this.xlen)
+            this.cols.push(j*this.xdiv)
         }
         this.highlights = [];
         this.mouseState = [0, 0]
