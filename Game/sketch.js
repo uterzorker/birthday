@@ -81,7 +81,7 @@ let tower_options = {'basic': 250, 'fancy': 1000, 'sniper': 3000}
 let tower_ranges = {'basic': 200, 'fancy': 400, 'sniper': 800}
 let tower_post_button = 0;
 
-let waiting;
+let waiting = 0;
 let _wait_end = 0;
 let popup = 0;
 let popup_state = 0;
@@ -105,6 +105,7 @@ function reset() {
   wavesouls = 0
   wavesize = 1
   wave_cas = 0
+  waiting = 9
   earnings = 300
   lives = 10
   fade = 0
