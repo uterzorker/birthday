@@ -68,11 +68,11 @@ class Tower {
 
                         if (dist <= this.range && o.alive) {
                             options.push([dist, dir])
-                        } if (options.length) {
-                            options = options.sort((a, b)=> a[0]-b[0])
-                        }    
+                        }  
                     }
-                }
+                } if (options.length) {
+                            options = options.sort((a, b)=> a[0]-b[0])
+                        }   
             }
         } else if (mode=='front') {
             if (objs.length > 0) {
@@ -91,12 +91,11 @@ class Tower {
 
                         if (dist <= this.range && o.alive) {
                             options.push([o.l, dir])
-                        } if (options.length) {
-                                options = options.sort((a, b)=> b[0] - a[0])
-                        }
+                        } 
                     }  
+                } if (options.length) {
+                                options = options.sort((a, b)=> b[0] - a[0])
                 }
-                
             }
         } if (options.length > 0) {
             if (targets.length) {
