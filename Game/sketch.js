@@ -65,15 +65,16 @@ let t;
 let towers = [];
 let _occ_check = 0;
 let tower_list = []
+let targets = []
 
 
 let wavenum = 0;
-let wavesize = 10 + 2*wavenum
+let wavesize = 1
 let orc_health = 50 + wavenum*5
 let wavesouls = 0;
 let wave_cas = 0;
 let earnings = 300;
-let lives = 25;
+let lives = 10;
 
 let tower_queue = "";
 let tower_options = {'basic': 250, 'fancy': 1000, 'sniper': 3000}
@@ -102,9 +103,10 @@ function reset() {
   console.log('reset')
   wavenum = 0
   wavesouls = 0
+  wavesize = 1
   wave_cas = 0
   earnings = 300
-  lives = 25
+  lives = 10
   fade = 0
   outro = 0
   loop();
@@ -425,7 +427,7 @@ function draw() {
 
   //WAVEMACHINE
   let _frame_spacing = (fr)/(1+wavenum)
-  if (frameCount%(_frame_spacing) < 1 && wavesouls < wavesize && end == 0 && frameCount >= 60) {
+  if (frameCount%(_frame_spacing) < 1 && wavesouls < wavesize && end == 0 && frameCount >= fr*3) {
     wavesouls += 1
     let _o = new Orc(init, orc_health, ((10+wavenum)))
     orcs.push(_o)
