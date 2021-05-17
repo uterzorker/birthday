@@ -170,8 +170,8 @@ class Tower {
                             let pointer = createVector(10, turn)
                             this.shots.push([shot[0], pointer])
                             console.log(j)
-                    }
-                    else {
+                        }
+                    } else {
                             this.shots.splice(i, 1)
                     }
                     //console.log(this.dir)
