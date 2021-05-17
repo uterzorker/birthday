@@ -160,16 +160,17 @@ class Tower {
                 //tower:obj distance
                 let _towobj = p5.Vector.sub(obj.pos, this.pos)
                 let _delta = p5.Vector.sub(_towshot, _towobj)
-                if (this.t == "sniper") {
-                        _radius_ = 300
-                    }
                 if (_shotobj.mag() <= _radius_) {
                     hits += 1
                     
-                    for (let j=0; j<6; j++) {
-                        let turn = PI*j/3
-                        let pointer = createVector(10, turn)
-                        this.shots.push([shot[0], pointer])
+                    if (this.t=="sniper") {
+                        for (let j=0; j<6; j++) {
+                            let turn = PI*j/3
+                            let pointer = createVector(10, turn)
+                            //this.shots.push([shot[0], pointer])
+                            console.log(j)
+                    }
+                    
 
                     }
                     if (this.t != "sniper") {
