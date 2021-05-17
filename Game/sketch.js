@@ -105,7 +105,7 @@ function reset() {
   wavesouls = 0
   wavesize = 1
   wave_cas = 0
-  waiting = 9
+  waiting = 0
   earnings = 300
   lives = 10
   fade = 0
