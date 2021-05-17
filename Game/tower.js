@@ -77,7 +77,7 @@ class Tower {
         } else if (mode=='front') {
             if (objs.length > 0) {
                 for (let o of objs) {
-                    if (o.alive && o.dir.mag()) {
+                    if (o.alive && o.dir) {
                         let lead = o.dir
                         //lead.setMag(o.speed)
                         let _o_pos = o.pos
