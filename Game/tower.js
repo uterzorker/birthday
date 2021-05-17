@@ -46,6 +46,7 @@ class Tower {
             this.crit = .5
             this.mode_ind=1
             this.shot_color = [255, 50, 50]
+            this.splash = 3
         }
     }
 
@@ -164,13 +165,13 @@ class Tower {
                     hits += 1
                     
                     if (this.t=="sniper") {
-                        this.shots.splice(i, 1)
-                        for (let j=0; j<1; j++) {
-                            let turn = PI*j/3
+                        for (let j=0; j<this.splash; j++) {
+                            let turn = PI*j/this.splash
                             let pointer = createVector(0, 0)
                             pointer.setMag(this._shotspeed)
                             pointer.setHeading(turn)
                             this.shots.push([shot[0], pointer])
+                            this.shots.splice(i, 1)
                             console.log(j)
                             break
                         }
