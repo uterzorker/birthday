@@ -67,7 +67,7 @@ class Tower {
                         let dist = dir.mag()
 
                         if (dist <= this.range && o.alive) {
-                            options.push([dist, dir])
+                            options.push([dist, dir, o.pos])
                         }  
                     }
                 } if (options.length) {
@@ -90,7 +90,7 @@ class Tower {
                         let dist = dir.mag()
 
                         if (dist <= this.range && o.alive) {
-                            options.push([o.l, dir])
+                            options.push([o.l, dir, o.pos])
                         } 
                     }  
                 } if (options.length) {
@@ -101,7 +101,7 @@ class Tower {
             if (targets.length) {
                for (let targ of targets) {
                    for (let j=0; j<options.length; j++) {
-                       if (options[j] == targ) {
+                       if (options[j][2] == targ[2]) {
                            options.splice(j, 1)
                        }    
                    }     
