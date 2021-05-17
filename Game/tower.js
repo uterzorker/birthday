@@ -55,7 +55,7 @@ class Tower {
         if (mode=='close') {
             if (objs.length > 0) {
                 for (let o of objs) {
-                    if (o.alive && o.dir.mag()) {
+                    if (o.alive && o.dir) {
                         let lead = o.dir
                         let _o_pos = o.pos
                         let _towobj = p5.Vector.sub(_o_pos, this.pos)
