@@ -164,12 +164,13 @@ class Tower {
                         _radius_ = 300
                     }
                 if (_shotobj.mag() <= _radius_) {
-
                     hits += 1
-                    for (let j=0;j<targets.length;j++) {
-                        if (targets[j][1] == shot[1]) {
-                            targets.splice(j, 1)
-                        }
+                    
+                    for (let j=0; j<6; j++) {
+                        let turn = PI*j/3
+                        let pointer = createVector(10, turn)
+                        this.shots.push(shot[0], pointer)
+
                     }
                     if (this.t != "sniper") {
                         this.shots.splice(i, 1)
