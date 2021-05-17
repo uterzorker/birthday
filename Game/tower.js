@@ -194,7 +194,7 @@ class Tower {
             }   
         }
         if (!orcs.length) {
-            shots = []
+            this.shots = []
         }
 
     }
