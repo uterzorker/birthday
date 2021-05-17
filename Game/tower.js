@@ -83,7 +83,10 @@ class Tower {
                         let _o_pos = o.pos
                         let _towobj = p5.Vector.sub(_o_pos, this.pos)
                         //leading
-                        lead.setMag(o.speed*_towobj.mag()/(this._shotspeed)
+                        //lead.setMag(o.speed*_towobj.mag()/(this._shotspeed))
+                                    
+                                    
+                        lead.setMag(o.speed*Math.sqrt(_towobj.mag()*_towobj.mag()/(this._shotspeed*this._shotspeed - o.speed*o.speed)))
                         _o_pos.add(lead)
                         let dir = p5.Vector.sub(_o_pos, this.pos)
                         //this.dir = dir.heading()
