@@ -67,7 +67,7 @@ class Grid {
             }
             if (x < main_width && x > 0 && y < main_height && y > 0 && _occ==0) {
                 let pos = createVector(this.cols[x], this.rows[y])
-                console.log(x, y)
+                //console.log(x, y)
                 return pos            
             } else {
                 return false
