@@ -168,10 +168,11 @@ class Tower {
                         for (let j=0; j<1; j++) {
                             let turn = PI*j/3
                             let pointer = createVector(0, 0)
-                            pointer.setMag(1)
+                            pointer.setMag(this._shotspeed)
                             pointer.setHeading(turn)
                             this.shots.push([shot[0], pointer])
                             console.log(j)
+                            break
                         }
                     } else {
                             this.shots.splice(i, 1)
