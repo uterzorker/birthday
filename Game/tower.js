@@ -168,7 +168,7 @@ class Tower {
                         for (let j=0; j<6; j++) {
                             let turn = PI*j/3
                             let pointer = createVector(10, turn)
-                            //this.shots.push([shot[0], pointer])
+                            this.shots.push([shot[0], pointer])
                             console.log(j)
                     }
                     else {
