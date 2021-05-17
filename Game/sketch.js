@@ -440,7 +440,8 @@ function draw() {
     if (waiting==0 && frameCount >= _wait_end) {
       _wait_end = frameCount + fr*3
       waiting = 1
-    } else if (frameCount > _wait_end) {
+      console.log('waiting')
+    } else if (waiting && frameCount > _wait_end) {
       wavesouls = 0
       wavenum += 1
       wavesize = 10 + 2*wavenum
