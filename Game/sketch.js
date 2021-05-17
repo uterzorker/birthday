@@ -427,7 +427,7 @@ function draw() {
 
   //WAVEMACHINE
   let _frame_spacing = (fr)/(1+wavenum)
-  if (frameCount%(_frame_spacing) < 1 && wavesouls < wavesize && end == 0 && frameCount >= fr*3) {
+  if (frameCount%(_frame_spacing) < 1 && wavesouls < wavesize && end == 0 && (frameCount - _restart_frame) >= fr*3) {
     wavesouls += 1
     let _o = new Orc(init, orc_health, ((10+wavenum)))
     orcs.push(_o)
