@@ -113,7 +113,7 @@ class Tower {
                }    
             }
             if (options.length) {
-                targets.push(options[0])
+                //targets.push(options[0])
                 return options[0][1]
             }
         } else {
