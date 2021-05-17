@@ -6,6 +6,21 @@ let debug = 0;
 
 let fr = 30;
 
+let away = 0;
+function away_check() {
+  if (document.visibilityState == "hidden") {
+    away = 1
+    s_rowing.stop()
+    s_start.stop()
+    console.log('away')
+  } else {
+    away = 0
+  }
+}
+
+document.addEventListener('visibilitychange', away_check)
+
+
 let pauseStatus = 1
 
 //IMAGES
@@ -50,16 +65,15 @@ let t;
 let towers = [];
 let _occ_check = 0;
 let tower_list = []
-let targets = [];
 
 
 let wavenum = 0;
-let wavesize = 1
+let wavesize = 10 + 2*wavenum
 let orc_health = 50 + wavenum*5
 let wavesouls = 0;
 let wave_cas = 0;
 let earnings = 300;
-let lives = 10;
+let lives = 25;
 
 let tower_queue = "";
 let tower_options = {'basic': 250, 'fancy': 1000, 'sniper': 3000}
@@ -77,6 +91,7 @@ let fade = 0;
 let _restart = 0;
 let _restart_frame = 0;
 let end = 0;
+let won = 0;
 
 //headspin
 let theta = 0
@@ -87,10 +102,9 @@ function reset() {
   console.log('reset')
   wavenum = 0
   wavesouls = 0
-  wavesize = 1
   wave_cas = 0
   earnings = 300
-  lives = 10
+  lives = 25
   fade = 0
   outro = 0
   loop();
@@ -104,7 +118,8 @@ function reset() {
   _restart = 1
   _restart_frame = frameCount
   pauseStatus = 1
-  end = 0;
+  end = 0
+  won = 0
   s_victory.stop()
   s_gameover.stop()
   s_slide.stop()
@@ -136,6 +151,7 @@ function preload() {
   soundFormats('mp3')
   s_theme = loadSound('libraries/sounds/theme2')
   s_start = loadSound('libraries/sounds/start2')
+  s_start.setVolume(.5)
   for (let i=0; i<4; i++) {
     let s_temp = loadSound('libraries/sounds/hitler' + str(i) + '.mp3')
     s_temp.setVolume(.3)
@@ -245,6 +261,8 @@ function keyTyped() {
       lives = 0
     } else if (key=='4') {
       earnings *= 10
+    } else if (key=='0') {
+      lives = 900
     }
   }
    
@@ -281,8 +299,13 @@ function mouseClicked() {
 }
 
 function draw() {
+  away_check()
   background(0);
   image(space, 0,0, main_width, main_height)
+
+  if (away) {
+    s_rowing.stop()
+  }
 
   if (frameCount-_restart_frame == 4) {
     if (s_theme.isPlaying()) {
@@ -402,7 +425,7 @@ function draw() {
 
   //WAVEMACHINE
   let _frame_spacing = (fr)/(1+wavenum)
-  if (frameCount%(_frame_spacing) < 1 && wavesouls < wavesize && end == 0 && frameCount >= fr*3) {
+  if (frameCount%(_frame_spacing) < 1 && wavesouls < wavesize && end == 0 && frameCount >= 60) {
     wavesouls += 1
     let _o = new Orc(init, orc_health, ((10+wavenum)))
     orcs.push(_o)
@@ -496,6 +519,7 @@ function draw() {
       outro = frameCount
       s_victory.play()
     }
+    won = 1
     end = 1
     orcs = []
     fade = frameCount - outro
@@ -548,7 +572,7 @@ function draw() {
     pop();
   }
 
-  if (lives <= 0 || (earnings < 0 && towers.length < 1)) {
+  if ((lives <= 0 || (earnings < 250 && towers.length < 1)) && !won) {
     if (outro == 0) {
       outro = frameCount
       s_gameover.play()
