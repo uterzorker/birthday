@@ -102,7 +102,7 @@ class Tower {
                                 options = options.sort((a, b)=> b[0] - a[0])
                 }
             }
-        } if (options.length > 0) {
+        } if (options.length) {
             if (targets.length) {
                for (let targ of targets) {
                    for (let j=0; j<options.length; j++) {
@@ -112,8 +112,10 @@ class Tower {
                    }     
                }    
             }
-            targets.push(options[0])
-            return options[0][1]
+            if (options.length) {
+                targets.push(options[0])
+                return options[0][1]
+            }
         } else {
             return false
         }
