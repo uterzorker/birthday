@@ -107,7 +107,7 @@ class Tower {
                for (let targ of targets) {
                    for (let j=0; j<options.length; j++) {
                        if (options[j][2] == targ[2]) {
-                           options.splice(j, 1)
+                           //options.splice(j, 1)
                        }    
                    }     
                }    
@@ -118,7 +118,7 @@ class Tower {
             }
         } else {
             if (orcs.length) {
-                console.log(orcs.length)
+                //console.log(orcs.length)
             }
             return false
         }
