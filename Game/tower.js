@@ -165,9 +165,11 @@ class Tower {
                     
                     if (this.t=="sniper") {
                         this.shots.splice(i, 1)
-                        for (let j=0; j<6; j++) {
+                        for (let j=0; j<1; j++) {
                             let turn = PI*j/3
-                            let pointer = createVector(10, turn)
+                            let pointer = createVector(0, 0)
+                            pointer.setMag(1)
+                            pointer.setHeading(turn)
                             this.shots.push([shot[0], pointer])
                             console.log(j)
                         }
