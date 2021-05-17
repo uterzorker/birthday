@@ -173,8 +173,7 @@ class Tower {
                             this.shots.push([shot[0], pointer])
                             this.shots.splice(i, 1)
                             console.log(j)
-                            break
-                        }
+                        } break
                     } else {
                             this.shots.splice(i, 1)
                     }
