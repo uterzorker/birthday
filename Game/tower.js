@@ -160,15 +160,20 @@ class Tower {
                 //tower:obj distance
                 let _towobj = p5.Vector.sub(obj.pos, this.pos)
                 let _delta = p5.Vector.sub(_towshot, _towobj)
+                if (this.t == "sniper") {
+                        _radius_ = 300
+                    }
                 if (_shotobj.mag() <= _radius_) {
+
                     hits += 1
                     for (let j=0;j<targets.length;j++) {
                         if (targets[j][1] == shot[1]) {
                             targets.splice(j, 1)
                         }
                     }
-                    
-                    this.shots.splice(i, 1)
+                    if (this.t != "sniper") {
+                        this.shots.splice(i, 1)
+                    }
                     //console.log(this.dir)
                     
                 } 
@@ -186,6 +191,9 @@ class Tower {
                 // }
                 i[0] = p5.Vector.add(i[0], (i[1].setMag(this._shotspeed)))
             }   
+        }
+        if (!orcs.length) {
+            shots = []
         }
 
     }
