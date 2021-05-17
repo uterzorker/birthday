@@ -117,6 +117,9 @@ class Tower {
                 return options[0][1]
             }
         } else {
+            if (orcs.length) {
+                console.log(orcs.length)
+            }
             return false
         }
     }
